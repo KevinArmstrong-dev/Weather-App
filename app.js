@@ -8,13 +8,14 @@ const GeoApiUrl = "https://api.mapbox.com/geocoding/v5/mapbox.places/Los%20Angel
 
 request({url: url,json:true},(error, response)=> {
     
+    //This error will have data if the response is undefined
     if(error){
         console.log("Unable to connect to weather Api")
     }
+    //this will be called if the api response returned an error code
     else if(response.body.error){
         console.log('Unable to obtain data');
     }
-    
     else{
         //console.log(response.body.current);
         console.log('It is currently '+response.body.current.temperature+ " degrees out. There is a "+ response.body.current.precip *100 + "% chance of rain");
