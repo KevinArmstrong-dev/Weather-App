@@ -7,12 +7,25 @@ const GeoApiUrl = "https://api.mapbox.com/geocoding/v5/mapbox.places/Los%20Angel
 
 
 request({url: url,json:true},(error, response)=> {
-    //console.log(response.body.current);
-    //console.log('It is currently '+response.body.current.temperature+ " degrees out. There is a "+ response.body.current.precip *100 + "% chance of rain");
+    
+    if(error){
+        console.log("Unable to connect to weather Api")
+    }
+    else if(response.body.error){
+        console.log('Unable to obtain data');
+    }
+    
+    else{
+        //console.log(response.body.current);
+        console.log('It is currently '+response.body.current.temperature+ " degrees out. There is a "+ response.body.current.precip *100 + "% chance of rain");
+    }
 })  
 
 request({url: GeoApiUrl,json:true},(error, response)=> {
-   // console.log("Geo Api says " + response.body.features[2].geometry.coordinates);
-    const coordinates = response.body.features[2].geometry.coordinates;
+    if(!error){
+        const coordinates = response.body.features[2].geometry.coordinates;
     console.log(" The coordinates are  "+ coordinates[0] + " and "+coordinates[1]);
+    } else{
+        console.log("Unable to connect to the weather Api");
+    }   
 })  
