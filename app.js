@@ -23,10 +23,15 @@ request({url: url,json:true},(error, response)=> {
 })  
 
 request({url: GeoApiUrl,json:true},(error, response)=> {
-    if(!error){
+    if(error){
+        console.log("Unable to connect to the weather Api");
+    }else if(!response.body.features){
+        console.log('Unable to obtain data');
+    }
+     else{
         const coordinates = response.body.features[2].geometry.coordinates;
     console.log(" The coordinates are  "+ coordinates[0] + " and "+coordinates[1]);
-    } else{
-        console.log("Unable to connect to the weather Api");
+
+       
     }   
 })  
