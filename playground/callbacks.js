@@ -25,3 +25,18 @@ const data = geocode ('Montreal', (data) =>{
     console.log(data);
 
 });
+
+
+const add = (a, b, (sum) =>{
+    setTimeout(()=>{
+
+       sum(1, 4);
+    
+       },2000)
+})
+
+const sum = (a , b) =>{
+    return a + b;
+}
+
+add(1,3)
