@@ -27,10 +27,10 @@ const data = geocode ('Montreal', (data) =>{
 });
 
 
-const add = (a, b, (sum) =>{
+const add = (4, 5, (callback) =>{
     setTimeout(()=>{
 
-       sum(1, 4);
+       callback(4, 5);
     
        },2000)
 })
@@ -39,4 +39,4 @@ const sum = (a , b) =>{
     return a + b;
 }
 
-add(1,3)
+console.log(add(1,3, sum));
