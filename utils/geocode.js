@@ -18,9 +18,4 @@ const geocode = (address, callback) => {
     })
 
 }
-
-geocode('Montreal', (error,data) =>{
-    console.log('Error', error);
-    console.log('Data', data);
-});
 module.exports =  geocode
