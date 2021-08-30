@@ -8,7 +8,9 @@ const forecast = require('./utils/forecast')
 
 const city = process.argv[2];
 if(city){
-    geocode(city, (error,{location, latitude, longitude}) =>{
+    //default empty object is given
+    // because you can't destructure an undefined object in case of an error
+    geocode(city, (error,{location, latitude, longitude} = {}) =>{
     
         //If somthing goes wrong, log the error then return.
         if(error){
