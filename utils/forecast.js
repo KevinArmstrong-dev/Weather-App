@@ -28,17 +28,17 @@ const request = require('request');
 const forecast = (latitude, longitude, callback) => {
     const url = 'http://api.weatherstack.com/current?access_key=eacbe4128b041bb2b9a09b8cbb0b5b7a&query='+longitude+ ','+latitude;
     request({
-        url: url,
+        url,
         json: true
-    }, (error, response) => {
+    }, (error, {body}) => {
         if (error) {
             callback('Unable to connect to weather service', undefined)
-        } else if (response.body.error) {
+        } else if (body.error) {
             callback('Unable to obtain data', undefined);
         } else {
             callback(undefined, {
-                temperature: response.body.current.temperature,
-                chance_of_rain: response.body.current.precip * 100 + "% chance of rain"
+                temperature: body.current.temperature,
+                chance_of_rain: body.current.precip * 100 + "% chance of rain"
             });
         }
     })
