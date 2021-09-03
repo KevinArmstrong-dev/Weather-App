@@ -3,6 +3,7 @@ const express = require('express');
 
 console.log(__dirname);
 console.log(path.join(__dirname,'../public'));
+const viewsPath = paths.join(__dirname, '../templates');
 
 
 const app = express();
@@ -11,6 +12,7 @@ const publicDirpath = path.join(__dirname,'../public');
 
 //This line for using the handlebars templating tool 
 app.set('view engine','hbs');
+app.set('views', viewsPath);
 
 //customize the server
 app.use(express.static(publicDirpath));
