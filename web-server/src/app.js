@@ -53,6 +53,22 @@ app.get('/weather', (req,res) =>{
     });
 })
 
+//Dealing with 404 This uses wild cards to match anyhting
+
+app.get('/help/*', (req,res) => {
+    res.render('404',{
+        error: "help article not found",
+        name:'Kevin A. R'
+    })    
+})
+
+app.get("*",(req,res) => {
+    res.render('404',{
+        error: 'Page not found',
+        name: 'Kevin A. R'
+    })
+});
+
 app.listen(3000,()=>{
     console.log('Server is up on port 3000.');
 });
