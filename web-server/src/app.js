@@ -47,10 +47,33 @@ app.get('/about',(req,res) =>{
 
 //weather route
 app.get('/weather', (req,res) =>{
-    res.send({
-        forecast: 'Its 50 degrees in Philly',
-        location: 'Philadelphia'
-    });
+
+    if(!req.query.address){
+       return res.send({
+            error:' You must provide an address'
+        })
+    }
+        console.log(req.query.address);
+        res.send({
+            forecast: 'Its 50 degrees in Philly',
+            location: 'Philadelphia',
+            address: req.query.address
+        })
+    
+})
+
+app.get('/products',(req,res) => {
+    if(!req.query.search){
+        res.send({
+            error:' You must provide a search term'
+        })
+    }else{
+        console.log(req.query);
+        res.send({
+            products:[]
+        })
+    }
+
 })
 
 //Dealing with 404 This uses wild cards to match anyhting
