@@ -45,7 +45,6 @@ messageTwo.textContent = '';
        }else{
         messageOne.textContent = data.forecast.temperature;
        }
-
     })
 })
 })
