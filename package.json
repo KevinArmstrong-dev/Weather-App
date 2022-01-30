@@ -1,7 +1,7 @@
 {
   "name": "Weather-App",
   "version": "1.0.0",
-  "description": "",
+  "description": "A wether app",
   "main": "app.js",
   "scripts": {
     "start":"node web-server/src/app.js"
@@ -19,5 +19,6 @@
   "homepage": "https://github.com/KevinArmstrong-dev/Weather-App#readme",
   "dependencies": {
     "request": "^2.88.0"
-  }
+  },
+  "devDependencies": {}
 }
