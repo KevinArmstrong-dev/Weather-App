@@ -25,8 +25,16 @@ const request = require('request');
 //     callback();
 // }
 
+
+
+//key for open weather baedb6a0ffcd5790078b896948dba310
+
+// const requ = 'http://api.openweathermap.org/data/2.5/weather?lat='+latitude+'&lon='+longitude+ '&appid=baedb6a0ffcd5790078b896948dba310'
+
 const forecast = (latitude, longitude, callback) => {
-    const url = 'http://api.weatherstack.com/current?access_key=eacbe4128b041bb2b9a09b8cbb0b5b7a&query='+longitude+ ','+latitude;
+    // const url = 'http://api.weatherstack.com/current?access_key=eacbe4128b041bb2b9a09b8cbb0b5b7a&query='+longitude+ ','+latitude;
+    const url = 'http://api.openweathermap.org/data/2.5/weather?lat='+latitude+'&lon='+longitude+ '&appid=658767b0ae936b022f59a69f44868419'
+
     request({
         url,
         json: true
@@ -37,13 +45,15 @@ const forecast = (latitude, longitude, callback) => {
             callback('Unable to obtain data', undefined);
         } else {
             callback(undefined, {
-                temperature: body.current.temperature,
-                chance_of_rain: body.current.precip * 100 + "% chance of rain"
+                temperature: body.main.temp -273.15, //the unit is in kelvin 
+                //  chance_of_rain: body.current.precip * 100 + "% chance of rain"
+                description: body.weather[0].description,
             });
         }
     })
 }
 
-// forecast(12313,12313,()=>{console.log('BEEP BOOP')});
+
+// forecast(51.5072,-0.1276,(response)=>{console.log('BEEP BOOP ',response)});
 
 module.exports = forecast

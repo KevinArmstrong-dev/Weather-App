@@ -28,7 +28,7 @@ const messageTwo = document.querySelector('#message-2');
 
 
 
-weatherForm.addEventListener('submit',(evt)=>{
+weatherForm.addEventListener('submit', (evt) => {
     //prevent default behavouir which is refreshing the page everytime a form is submitted
     //now it does nothing
     evt.preventDefault();
@@ -37,14 +37,18 @@ weatherForm.addEventListener('submit',(evt)=>{
     // console.log('Testing ',location);
     messageOne.textContent = 'Loading. .. ... ';
 
-messageTwo.textContent = '';
-    fetch('/weather?address='+location).then((response) => {
-    response.json().then((data) => {
-       if(data.error){
-        messageTwo.textContent = data.error;
-       }else{
-        messageOne.textContent = data.forecast.temperature;
-       }
+    messageTwo.textContent = '';
+    fetch('/weather?address=' + location).then((response) => {
+        response.json().then((data) => {
+            if (data.error) {
+                messageTwo.textContent = data.error;
+            } else {
+                console.log('The temperature is ', data.forecast)
+                const temp = Math.round(data.forecast.temperature);
+
+                messageOne.textContent = "The current temperature is " + temp + " degrees Celsius with " +
+                    data.forecast.description;
+            }
+        })
     })
-})
 })

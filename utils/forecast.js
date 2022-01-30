@@ -38,7 +38,7 @@ const forecast = (latitude, longitude, callback) => {
         } else {
             callback(undefined, {
                 temperature: body.current.temperature,
-                chance_of_rain: body.current.precip * 100 + "% chance of rain"
+                chance_of_rain: body.current,
             });
         }
     })
